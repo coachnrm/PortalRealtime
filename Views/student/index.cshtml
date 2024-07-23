@@ -1,0 +1,85 @@
+@model IEnumerable<PortalRealTime.Models.student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="addstudent">Create New</a>
+</p>
+@* <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.studentname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.studentphone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                Action
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+     <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.studentname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.studentphone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Skill.skillname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.statusname)
+                </td>
+                <td>
+                    <a asp-action="View" asp-route-id="@item.id">View</a>
+                </td>
+            </tr>
+        }
+    </tbody> 
+    <tbody></tbody>
+</table> *@
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h4>Students</h4>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="table table-hover" id="tblStudent">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>StudentName</th>
+                                <th>StudentPhone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/student.js"></script>
+}

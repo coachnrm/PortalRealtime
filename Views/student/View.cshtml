@@ -1,0 +1,37 @@
+@model PortalRealTime.Models.updatestudentviewmodel
+
+@{
+    ViewBag.skillname = "student Page";
+    ViewBag.statusname = "status Page";
+}
+
+<h4>Edit student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" action="View">
+            <div>
+                <label for="" class="form-label"></label>
+                <input type="number" class="form-control" asp-for="id" readonly />
+            </div>
+            <div>
+                <label for="" class="form-label"></label>
+                <input type="text" class="form-control" asp-for="studentname" />
+            </div>
+             <div>
+                <label for="" class="form-label"></label>
+                <input type="text" class="form-control" asp-for="studentphone" />
+            </div>
+            <div>
+                <label for="" class="form-label"></label>
+                @Html.DropDownListFor(x=>x.skillid, ViewBag.skills as SelectList, "Select Skill", new{ @class = "form-control" })
+            </div>
+            <div>
+                <label for="" class="form-label"></label>
+                @Html.DropDownListFor(x=>x.statusid, ViewBag.statuses as SelectList, "Select Status", new{ @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-danger" asp-action="Delete" asp-controller="student">Delete</button>
+        </form>
+    </div>
+</div>

@@ -1,13 +1,22 @@
 using Microsoft.EntityFrameworkCore;
-using PortalRealTime.Data;
+using PortalRealTime.Hubs;
+using PortalRealTime.MiddlewareExtensions;
+using PortalRealTime.Models;
+using PortalRealTime.SubscribeTableDependencies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Singleton);
+builder.Services.AddSignalR();
+
+// Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<mycontext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Singleton);
 builder.Services.AddControllersWithViews();
+
+// DI
+builder.Services.AddSingleton<StudentHub>();
+builder.Services.AddSingleton<SubscribeStudentTableDependency>();
 
 var app = builder.Build();
 
@@ -25,9 +34,13 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.MapHub<StudentHub>("/studentHub");
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=student}/{action=Index}/{id?}");
 
+app.UseSqlTableDependency<SubscribeStudentTableDependency>(connectionString);
+
+//app.Urls.Add("http://*:80");
 app.Run();
