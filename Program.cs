@@ -7,7 +7,7 @@ using PortalRealTime.SubscribeTableDependencies;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSignalR();
+//builder.Services.AddSignalR();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -15,8 +15,8 @@ builder.Services.AddDbContext<mycontext>(options => options.UseSqlServer(connect
 builder.Services.AddControllersWithViews();
 
 // DI
-builder.Services.AddSingleton<StudentHub>();
-builder.Services.AddSingleton<SubscribeStudentTableDependency>();
+//builder.Services.AddSingleton<StudentHub>();
+//builder.Services.AddSingleton<SubscribeStudentTableDependency>();
 
 var app = builder.Build();
 
@@ -34,13 +34,13 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-app.MapHub<StudentHub>("/studentHub");
+//app.MapHub<StudentHub>("/studentHub");
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=student}/{action=Index}/{id?}");
 
-app.UseSqlTableDependency<SubscribeStudentTableDependency>(connectionString);
+//app.UseSqlTableDependency<SubscribeStudentTableDependency>(connectionString);
 
 //app.Urls.Add("http://*:80");
 app.Run();

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PortalRealTime")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f7283cd6573c285414847cf5d5577c8bd8b37ea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed33934530ddeafc6b1999338ff20912dcc4787c")]
 [assembly: System.Reflection.AssemblyProductAttribute("PortalRealTime")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PortalRealTime")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

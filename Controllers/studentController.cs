@@ -12,11 +12,13 @@ namespace mvccrudf.Controllers
         {
             my_context = my;
         }
-        public IActionResult Index()
+        public IActionResult index()
         {
+            Response.Headers.Add("Refresh", "3");
             var fetch = my_context.students.Include(x=>x.Skill).Include(x=>x.Status).ToList();
             return View(fetch);
         }
+
 
         public IActionResult addskill()
         {
@@ -28,7 +30,7 @@ namespace mvccrudf.Controllers
             my_context.skills.Add(s);
             my_context.SaveChangesAsync();
             ModelState.Clear();
-            ViewBag.success="Skill has been added";
+            ViewBag.success="รายการได้ถูกเพิ่มแล้ว";
             return View();
         }
 
@@ -36,7 +38,7 @@ namespace mvccrudf.Controllers
         {
             ViewBag.getskill = my_context.skills.ToList();
             ViewBag.getstatus = my_context.statuses.ToList();
-            return View();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -45,7 +47,6 @@ namespace mvccrudf.Controllers
             my_context.students.Add(s);
             my_context.SaveChanges();
             ModelState.Clear();
-            //return RedirectToAction("addstudent");
             return RedirectToAction("Index");
         }
 
